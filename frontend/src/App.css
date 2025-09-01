@@ -1,0 +1,157 @@
+/* ===========================
+   Global Reset + Base Styles
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: sans-serif;
+  background: none;
+}
+
+/* ===========================
+   Background Image
+=========================== */
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(/background1.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* ===========================
+   App Container (Full width)
+=========================== */
+.app-container {
+  min-height: 100vh;
+  width: 100%;                     /* ✅ Full width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: transparent;
+  border-radius: 0;                 /* ✅ Removed rounded corners */
+  margin: 0;                        /* ✅ Removed auto margin */
+  position: relative;
+  z-index: 1;
+}
+
+/* ===========================
+   Robot Container
+=========================== */
+.robot-container {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: bgColorPulse 6s ease-in-out infinite;
+  box-shadow: 0 0 30px 8px rgba(37, 99, 235, 0.3),
+              0 0 60px 20px rgba(37, 99, 235, 0.15);
+  user-select: none;
+  background-color: #2563eb;
+}
+
+.robot {
+  font-size: 5rem;
+  animation: robotMove 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* ===========================
+   Button
+=========================== */
+.ask-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ask-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ask-button:hover:not(:disabled) {
+  background-color: #1e40af;
+  box-shadow: 0 6px 12px rgba(30, 64, 175, 0.6);
+}
+
+/* ===========================
+   Answer Box (Full width)
+=========================== */
+.answer-box {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.6);   /* ✅ Dark glass effect */
+  color: white;
+  border-radius: 8px;
+  width: 90%;                          /* ✅ Take 90% screen width */
+  max-width: none;                      /* ✅ Removed restriction */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  white-space: pre-wrap;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.typing::after {
+  content: '|';
+  animation: blink 0.8s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes robotMove {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes bgColorPulse {
+  0% {
+    background-color: #2563eb;
+    box-shadow: 0 0 30px 8px rgba(37, 99, 235, 0.3),
+                0 0 60px 20px rgba(37, 99, 235, 0.15);
+  }
+  50% {
+    background-color: #3b82f6;
+    box-shadow: 0 0 40px 12px rgba(59, 130, 246, 0.4),
+                0 0 70px 25px rgba(59, 130, 246, 0.2);
+  }
+  100% {
+    background-color: #2563eb;
+    box-shadow: 0 0 30px 8px rgba(37, 99, 235, 0.3),
+                0 0 60px 20px rgba(37, 99, 235, 0.15);
+  }
+}
